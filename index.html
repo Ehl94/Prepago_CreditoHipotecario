@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Crédito Hipotecario</title>
+    
+    <!-- Incluye Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Enlace a la hoja de estilos externa -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Librerías Externas (se mantienen aquí para que carguen antes que el script) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-200 via-sky-200 to-purple-200 flex items-center justify-center min-h-screen p-4">
+
+    <div class="glass-effect rounded-2xl shadow-2xl w-full max-w-4xl p-8 space-y-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-900">Simulador de Crédito Hipotecario</h1>
+            <p class="mt-2 text-gray-700">Calcula y compara escenarios de amortización y prepago.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div>
+                <label for="principal" class="block text-sm font-medium text-gray-700">Monto del crédito (UF)</label>
+                <input type="number" id="principal" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" value="1000">
+            </div>
+            <div>
+                <label for="annualRate" class="block text-sm font-medium text-gray-700">Tasa nominal anual (%)</label>
+                <input type="number" id="annualRate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" value="5.4">
+            </div>
+            <div>
+                <label for="totalMonths" class="block text-sm font-medium text-gray-700">Plazo en meses</label>
+                <input type="number" id="totalMonths" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" value="300">
+            </div>
+            <div>
+                <label for="startDate" class="block text-sm font-medium text-gray-700">Fecha Inicio Crédito</label>
+                <input type="date" id="startDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
+            </div>
+            <div>
+                <label for="paidMonths" class="block text-sm font-medium text-gray-700">Meses pagados</label>
+                <input type="number" id="paidMonths" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" value="60">
+            </div>
+            <div>
+                <label for="prepaymentStartMonth" class="block text-sm font-medium text-gray-700">Inicio Prepago (Mes)</label>
+                <input type="number" id="prepaymentStartMonth" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" value="72">
+            </div>
+            <div class="md:col-span-2">
+                <label for="annualLimit" class="block text-sm font-medium text-gray-700">Límite de prepago anual (UF)</label>
+                <input type="number" id="annualLimit" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border" value="50">
+            </div>
+             <div>
+                <label for="frequencyMonths" class="block text-sm font-medium text-gray-700">Frecuencia de prepago</label>
+                <select id="frequencyMonths" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
+                    <option value="6">Semestral</option>
+                    <option value="12" selected>Anual</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <button id="btnSummary" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 flex items-center gap-2">
+                Resumen de mi Crédito
+            </button>
+            <button id="btnPrepayment" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 flex items-center gap-2">
+                Plan de Prepago
+            </button>
+            <button id="btnCompare" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 flex items-center gap-2">
+                Comparar Escenarios
+            </button>
+             <button id="btnExplain" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 flex items-center gap-2">
+                Explicar Resultados
+            </button>
+        </div>
+
+        <div id="results" aria-live="polite" class="mt-8 p-6 bg-white/50 rounded-lg border border-gray-200 shadow-inner flex flex-col items-center justify-center text-center md:text-left gap-8 min-h-[100px]">
+            <p class="text-gray-600">Los resultados se mostrarán aquí.</p>
+        </div>
+    </div>
+
+    <!-- Enlace al script externo. 'defer' asegura que se ejecute después de que el HTML se haya cargado. -->
+    <script src="script.js" defer></script>
+</body>
+</html>

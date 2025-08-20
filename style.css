@@ -1,0 +1,26 @@
+    /* Estilos Generales del Cuerpo */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilo para el efecto de vidrio (Glassmorphism) */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Transiciones para inputs y selects */
+input, select {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Estilos de foco mejorados para accesibilidad */
+input:focus, select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
+}
